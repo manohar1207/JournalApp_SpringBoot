@@ -1,39 +1,25 @@
 package com.NewProject.journalApp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
+import lombok.Data;
+import lombok.NonNull;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
+@Document(collection = "journal_entries")
+@Data
 public class JournalEntry {
-
-    private String id;
-
+    @Id
+    private ObjectId id;
+    @NonNull
     private String title;
-
     private String content;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-
+    private LocalDateTime date;
 }
